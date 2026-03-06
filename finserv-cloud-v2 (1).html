@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinServ Cloud</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f2f4f7;
+  min-height: 100vh;
+  color: #0D1F3C;
+}
+
+/* ── TOP NAV ── */
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: #fff;
+  border-bottom: 1px solid #e8eaed;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  z-index: 100;
+}
+
+.topnav-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+}
+
+.topnav-icon {
+  width: 30px; height: 30px;
+  background: #0D1F3C;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+}
+
+.topnav-icon-diamond {
+  width: 12px; height: 12px;
+  background: #C9971F;
+  transform: rotate(45deg);
+}
+
+.topnav-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0D1F3C;
+  letter-spacing: -0.01em;
+}
+
+.topnav-name span { color: #C9971F; }
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HOME PAGE ── */
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px 48px;
+}
+
+.home-logo-wrap {
+  width: 64px; height: 64px;
+  background: #0D1F3C;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(13,31,60,0.18);
+}
+
+.home-logo-diamond {
+  width: 26px; height: 26px;
+  background: #C9971F;
+  transform: rotate(45deg);
+}
+
+.home-title {
+  font-size: 30px;
+  font-weight: 700;
+  color: #0D1F3C;
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.home-sub {
+  font-size: 15px;
+  color: #6b7a8d;
+  text-align: center;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 420px;
+  margin-bottom: 8px;
+}
+
+.home-powered {
+  font-size: 12px;
+  color: #aab0bb;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.home-powered strong { color: #8a96a3; font-weight: 500; }
+
+/* ── USE CASE CARD LIST ── */
+.uc-list-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e4e7ec;
+  width: 100%;
+  max-width: 580px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(13,31,60,0.06);
+}
+
+.uc-list-header {
+  padding: 16px 24px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #C9971F;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.uc-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f2f5;
+  transition: background 0.15s;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  background: none;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+}
+
+.uc-row:last-child { border-bottom: none; }
+.uc-row:hover { background: #f8f9fb; }
+
+.uc-row-icon {
+  width: 40px; height: 40px;
+  background: #f2f4f7;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.icon-svg {
+  width: 20px; height: 20px;
+  stroke: #9aa3af;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.detail-icon-wrap .icon-svg {
+  width: 26px; height: 26px;
+}
+
+.party-mini-icon .icon-svg {
+  width: 20px; height: 20px;
+}
+
+.privacy-note .icon-svg {
+  width: 16px; height: 16px;
+  flex-shrink: 0;
+}
+
+.uc-row-info { flex: 1; }
+
+.uc-row-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0D1F3C;
+  margin-bottom: 2px;
+}
+
+.uc-row-sub {
+  font-size: 13px;
+  color: #8a96a3;
+  font-weight: 400;
+}
+
+.uc-row-arrow {
+  color: #c5ccd6;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.home-footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #aab0bb;
+  text-align: center;
+  max-width: 480px;
+}
+
+/* ── DETAIL PAGE ── */
+.detail {
+  min-height: 100vh;
+  padding: 80px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #8a96a3;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 32px;
+  align-self: flex-start;
+  max-width: 640px;
+  width: 100%;
+  padding: 0 4px;
+  transition: color 0.15s;
+  background: none;
+  border: none;
+}
+
+.back-btn:hover { color: #0D1F3C; }
+
+.detail-inner {
+  width: 100%;
+  max-width: 640px;
+}
+
+/* detail header card */
+.detail-header {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e4e7ec;
+  padding: 32px 32px 28px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(13,31,60,0.06);
+}
+
+.detail-icon-wrap {
+  width: 52px; height: 52px;
+  background: #f2f4f7;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.detail-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #C9971F;
+  margin-bottom: 6px;
+}
+
+.detail-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0D1F3C;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.detail-desc {
+  font-size: 14px;
+  color: #6b7a8d;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* how it works flow */
+.detail-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aab0bb;
+  padding: 0 4px;
+  margin: 20px 0 10px;
+}
+
+.flow-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e4e7ec;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(13,31,60,0.06);
+}
+
+.flow-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.flow-step:last-child { border-bottom: none; }
+
+.flow-step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.flow-step-num.bureau   { background: #deeaff; color: #2B5FC7; }
+.flow-step-num.bank     { background: #fff0cc; color: #a07010; }
+.flow-step-num.provider { background: #d5f5ed; color: #0f7a60; }
+.flow-step-num.dcr      { background: #0D1F3C; color: #C9971F; }
+
+.flow-step-content {}
+.flow-step-title { font-size: 14px; font-weight: 600; color: #0D1F3C; margin-bottom: 3px; }
+.flow-step-body  { font-size: 13px; color: #8a96a3; line-height: 1.6; }
+
+.flow-step-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.flow-step-tag.bureau   { background: #deeaff; color: #2B5FC7; }
+.flow-step-tag.bank     { background: #fff0cc; color: #a07010; }
+.flow-step-tag.provider { background: #d5f5ed; color: #0f7a60; }
+.flow-step-tag.dcr      { background: #0D1F3C; color: #C9971F; }
+
+/* output card */
+.output-card {
+  background: #0D1F3C;
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 16px;
+}
+
+.output-card-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #C9971F;
+  margin-bottom: 10px;
+}
+
+.output-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.output-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.output-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #a0b4cc;
+}
+
+.output-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #C9971F;
+  flex-shrink: 0;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(7,21,42,0.55);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+}
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+  max-height: 88vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(7,21,42,0.22);
+  animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+  from { opacity:0; transform: translateY(12px) scale(0.98); }
+  to   { opacity:1; transform: none; }
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #f0f2f5;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1;
+}
+
+.modal-header-info {}
+.modal-header-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #C9971F;
+  margin-bottom: 4px;
+}
+.modal-header-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0D1F3C;
+  letter-spacing: -0.01em;
+}
+
+.modal-close {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: #f2f4f7;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  color: #8a96a3;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: background 0.15s;
+}
+.modal-close:hover { background: #e4e7ec; color: #0D1F3C; }
+
+.modal-body { padding: 20px 24px 28px; }
+
+.spec-section { margin-bottom: 22px; }
+
+.spec-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #aab0bb;
+  margin-bottom: 10px;
+}
+
+.spec-row {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f5f6f8;
+  align-items: flex-start;
+}
+.spec-row:last-child { border-bottom: none; }
+
+.spec-key {
+  font-size: 12px;
+  font-weight: 600;
+  color: #0D1F3C;
+  min-width: 160px;
+  flex-shrink: 0;
+}
+
+.spec-val {
+  font-size: 12px;
+  color: #6b7a8d;
+  line-height: 1.55;
+}
+
+.spec-code {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  background: #f2f4f7;
+  border: 1px solid #e4e7ec;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #0D1F3C;
+  line-height: 1.7;
+  white-space: pre;
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.spec-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #f2f4f7;
+  color: #556070;
+  margin: 2px 2px 2px 0;
+}
+
+.spec-snowflake-note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: #f8f9fb;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-top: 8px;
+}
+
+.spec-snowflake-note-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.spec-snowflake-note-text {
+  font-size: 12px;
+  color: #6b7a8d;
+  line-height: 1.6;
+}
+
+.spec-snowflake-note-text a {
+  color: #C9971F;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ── ACTION BUTTONS ── */
+.action-btns {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.btn-primary {
+  flex: 1;
+  padding: 13px 20px;
+  background: #0D1F3C;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: #1a3460; }
+
+.btn-secondary {
+  flex: 1;
+  padding: 13px 20px;
+  background: #fff;
+  color: #0D1F3C;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.btn-secondary:hover { border-color: #C9971F; background: #fffdf7; }
+
+/* ── ROLE DROPDOWN ── */
+.role-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f2f5;
+}
+
+.role-select-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #8a96a3;
+  white-space: nowrap;
+}
+
+.role-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #f2f4f7 url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%238a96a3' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+  border: 1px solid #e4e7ec;
+  border-radius: 8px;
+  padding: 8px 36px 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0D1F3C;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  min-width: 220px;
+}
+
+.role-select:focus { outline: none; border-color: #C9971F; }
+.role-select:hover { border-color: #C9971F; }
+
+/* ── ROLE CARDS ── */
+.role-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px;
+  background: #fff;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+}
+
+.role-card:hover {
+  border-color: #C9971F;
+  box-shadow: 0 2px 16px rgba(201,151,31,0.1);
+  background: #fffdf7;
+}
+
+.role-card-icon {
+  width: 48px; height: 48px;
+  background: #f2f4f7;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.role-card-info { flex: 1; }
+
+.role-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #0D1F3C;
+  margin-bottom: 3px;
+}
+
+.role-card-sub {
+  font-size: 13px;
+  color: #8a96a3;
+  line-height: 1.5;
+}
+
+.role-card-arrow {
+  font-size: 18px;
+  color: #c5ccd6;
+  flex-shrink: 0;
+}
+.parties-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.party-mini {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e4e7ec;
+  padding: 16px 16px 14px;
+  border-top: 3px solid;
+}
+
+.party-mini.bureau   { border-top-color: #4A7FD4; }
+.party-mini.bank     { border-top-color: #C9971F; }
+.party-mini.provider { border-top-color: #1BAF8F; }
+
+.party-mini-icon { font-size: 20px; margin-bottom: 6px; }
+.party-mini-name { font-size: 13px; font-weight: 600; color: #0D1F3C; margin-bottom: 2px; }
+.party-mini-role { font-size: 11px; color: #aab0bb; }
+
+/* privacy note */
+.privacy-note {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e4e7ec;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #6b7a8d;
+  margin-bottom: 8px;
+}
+.privacy-note span { font-size: 18px; }
+
+/* page footer */
+.page-footer {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #c0c8d4;
+  text-align: center;
+  padding: 0 4px;
+}
+
+/* transitions */
+.page { animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topnav">
+  <div class="topnav-logo" onclick="showHome()">
+    <svg width="118" height="32" viewBox="0 0 118 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Shield mark -->
+      <path d="M6 4 L16 2 L26 4 L26 16 C26 22 16 28 16 28 C16 28 6 22 6 16 Z" fill="#0D1F3C"/>
+      <path d="M10 11 L16 9 L22 11 L22 18 C22 21.5 16 24.5 16 24.5 C16 24.5 10 21.5 10 18 Z" fill="#C9971F" opacity="0.9"/>
+      <path d="M13 15 L15 17 L19 13" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Wordmark -->
+      <text x="34" y="13" font-family="'Inter', Arial, sans-serif" font-size="10" font-weight="700" fill="#0D1F3C" letter-spacing="0.04em">CLEARPOINT</text>
+      <text x="34" y="24" font-family="'Inter', Arial, sans-serif" font-size="7.5" font-weight="400" fill="#8a96a3" letter-spacing="0.14em">CREDIT BUREAU</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ HOME ═══════════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="home">
+    <div class="home-logo-wrap"><div class="home-logo-diamond"></div></div>
+    <div class="home-title">Credit Marketing Intelligence</div>
+    <div class="home-sub">Pre-screen creditworthy audiences and build financial product campaigns — without exposing a single consumer record.</div>
+    <div class="home-powered">Powered by <strong>Snowflake Data Clean Rooms</strong></div>
+
+    <div class="uc-list-card">
+      <div class="uc-list-header">Select a use case to get started</div>
+
+      <button class="uc-row" onclick="showDetail('prescreen')">
+        <div class="uc-row-icon"><span data-icon="target"></span></div>
+        <div class="uc-row-info">
+          <div class="uc-row-title">Pre-Screen Credit Targeting</div>
+          <div class="uc-row-sub">FCRA-compliant audience selection</div>
+        </div>
+        <div class="uc-row-arrow">›</div>
+      </button>
+
+      <button class="uc-row" onclick="showDetail('offer')">
+        <div class="uc-row-icon"><span data-icon="card"></span></div>
+        <div class="uc-row-info">
+          <div class="uc-row-title">Tailored Offer Structuring</div>
+          <div class="uc-row-sub">Match products to credit tiers</div>
+        </div>
+        <div class="uc-row-arrow">›</div>
+      </button>
+
+      <button class="uc-row" onclick="showDetail('lal')">
+        <div class="uc-row-icon"><span data-icon="loop"></span></div>
+        <div class="uc-row-info">
+          <div class="uc-row-title">Look-Alike Modeling</div>
+          <div class="uc-row-sub">Creditworthy audience expansion</div>
+        </div>
+        <div class="uc-row-arrow">›</div>
+      </button>
+
+      <button class="uc-row" onclick="showDetail('eda')">
+        <div class="uc-row-icon"><span data-icon="micro"></span></div>
+        <div class="uc-row-info">
+          <div class="uc-row-title">Exploratory Data Analysis</div>
+          <div class="uc-row-sub">Universe sizing and population intelligence</div>
+        </div>
+        <div class="uc-row-arrow">›</div>
+      </button>
+
+    </div>
+
+    <div class="home-footer">Data never leaves the clean room. All outputs are aggregated and privacy-threshold enforced.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ DETAIL: PRE-SCREEN ═══════════════════════════════ -->
+<div class="page" id="page-prescreen">
+  <div class="detail">
+    <div class="detail-inner">
+      <button class="back-btn" onclick="showHome()">← All use cases</button>
+
+      <div class="detail-header">
+        <div class="detail-icon-wrap"><span data-icon="target"></span></div>
+        <div class="detail-label">Use Case 01</div>
+        <div class="detail-title">Pre-Screen Credit Targeting</div>
+        <div class="detail-desc">Retail banks identify creditworthy audiences for product campaigns before sending a single offer — without any party accessing raw consumer credit data. The clean room validates eligibility and returns only FCRA-compliant pre-screened segments.</div>
+        <div class="role-select-wrap">
+          <span class="role-select-label">Viewing as:</span>
+          <select class="role-select" onchange="updateRole(this.value)">
+            <option value="">Select your role...</option>
+            <option value="bank">Retail Bank</option>
+            <option value="provider">Data Provider / Bureau Agent</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="detail-section-title">The three parties</div>
+      <div class="parties-row">
+        <div class="party-mini bureau">
+          <div class="party-mini-icon"><span data-icon="files"></span></div>
+          <div class="party-mini-name">Credit Bureau</div>
+          <div class="party-mini-role">Equifax · Experian · TransUnion</div>
+        </div>
+        <div class="party-mini bank">
+          <div class="party-mini-icon"><span data-icon="bank"></span></div>
+          <div class="party-mini-name">Retail Bank</div>
+          <div class="party-mini-role">Campaign owner</div>
+        </div>
+        <div class="party-mini provider">
+          <div class="party-mini-icon"><span data-icon="signal"></span></div>
+          <div class="party-mini-name">Data Provider</div>
+          <div class="party-mini-role">Acxiom · Merkle · Epsilon</div>
+        </div>
+      </div>
+
+      <div class="detail-section-title">How it works</div>
+      <div class="flow-card">
+        <div class="flow-step">
+          <div class="flow-step-num bank">1</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bank defines eligibility criteria</div>
+            <div class="flow-step-body">Data science team sets the product, score floor (e.g. VantageScore ≥ 680), and suppression rules. No data leaves the bank.</div>
+            <span class="flow-step-tag bank">Retail Bank</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num provider">2</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Identity resolution & tokenization</div>
+            <div class="flow-step-body">Bureau agent maps encrypted CRM to a shared identity spine via SHA-256 hashed PII. Tokens pass into the clean room.</div>
+            <span class="flow-step-tag provider">Data Provider</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num bureau">3</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bureau unlocks permissioned attributes</div>
+            <div class="flow-step-body">Credit attributes are contributed after query governance validates permissible purpose. No individual scores returned.</div>
+            <span class="flow-step-tag bureau">Credit Bureau</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num dcr">4</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Privacy-safe computation inside the room</div>
+            <div class="flow-step-body">Differential privacy applied. Aggregate qualifying segments returned — no raw records exit.</div>
+            <span class="flow-step-tag dcr">DCR Engine</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num provider">5</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Audience activated to campaign channels</div>
+            <div class="flow-step-body">Match-keyed file pushed to direct mail fulfillment (FCRA firm offer) or DSP for digital reach extension.</div>
+            <span class="flow-step-tag provider">Data Provider</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="output-card">
+        <div class="output-card-label">What the bank receives</div>
+        <div class="output-card-title">Aggregate qualifying segments only — no individual scores or records</div>
+        <div class="output-items">
+          <div class="output-item"><div class="output-dot"></div>Population size by credit tier</div>
+          <div class="output-item"><div class="output-dot"></div>Estimated approval rate per segment</div>
+          <div class="output-item"><div class="output-dot"></div>Match-keyed audience file for activation</div>
+          <div class="output-item"><div class="output-dot"></div>Full audit log for FCRA documentation</div>
+        </div>
+      </div>
+
+      <div class="privacy-note"><span data-icon="lock"></span> Data never leaves the clean room. All outputs are aggregated and privacy-threshold enforced.</div>
+      <div class="action-btns">
+        <button class="btn-primary">Get Started</button>
+        <button class="btn-secondary" onclick="openSpecs('prescreen')">Technical Specs</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ DETAIL: OFFER STRUCTURING ═══════════════════════════════ -->
+<div class="page" id="page-offer">
+  <div class="detail">
+    <div class="detail-inner">
+      <button class="back-btn" onclick="showHome()">← All use cases</button>
+
+      <div class="detail-header">
+        <div class="detail-icon-wrap"><span data-icon="card"></span></div>
+        <div class="detail-label">Use Case 02</div>
+        <div class="detail-title">Tailored Offer Structuring</div>
+        <div class="detail-desc">Match the right financial product and terms to each credit tier population — without seeing a single individual score. Calibrate APR, credit limits, and intro offers by segment-level risk to improve approval rates and P&L performance.</div>
+      </div>
+
+      <div class="detail-section-title">The three parties</div>
+      <div class="parties-row">
+        <div class="party-mini bureau">
+          <div class="party-mini-icon"><span data-icon="files"></span></div>
+          <div class="party-mini-name">Credit Bureau</div>
+          <div class="party-mini-role">Score band distributions</div>
+        </div>
+        <div class="party-mini bank">
+          <div class="party-mini-icon"><span data-icon="bank"></span></div>
+          <div class="party-mini-name">Retail Bank</div>
+          <div class="party-mini-role">Product & terms design</div>
+        </div>
+        <div class="party-mini provider">
+          <div class="party-mini-icon"><span data-icon="signal"></span></div>
+          <div class="party-mini-name">Data Provider</div>
+          <div class="party-mini-role">Identity resolution</div>
+        </div>
+      </div>
+
+      <div class="detail-section-title">How it works</div>
+      <div class="flow-card">
+        <div class="flow-step">
+          <div class="flow-step-num bank">1</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bank defines product portfolio</div>
+            <div class="flow-step-body">Data science team maps each product (secured card, balance transfer, HELOC, personal loan) to target credit band criteria.</div>
+            <span class="flow-step-tag bank">Retail Bank</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num bureau">2</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bureau contributes score band distributions</div>
+            <div class="flow-step-body">Encrypted aggregate distributions — not individual scores — keyed to the bank's tokenized CRM universe enter the clean room.</div>
+            <span class="flow-step-tag bureau">Credit Bureau</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num dcr">3</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Clean room computes segment-level risk profiles</div>
+            <div class="flow-step-body">Aggregate delinquency rates, utilization tiers, and tradeline counts returned per credit band. Privacy thresholds enforced throughout.</div>
+            <span class="flow-step-tag dcr">DCR Engine</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num bank">4</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bank calibrates product terms by tier</div>
+            <div class="flow-step-body">Data science team uses segment risk profiles to set APR ranges, credit limits, and intro offers — improving approval rates without guesswork.</div>
+            <span class="flow-step-tag bank">Retail Bank</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="output-card">
+        <div class="output-card-label">What the bank receives</div>
+        <div class="output-card-title">Segment-level risk profiles to calibrate product terms</div>
+        <div class="output-items">
+          <div class="output-item"><div class="output-dot"></div>Score band population distribution</div>
+          <div class="output-item"><div class="output-dot"></div>Estimated delinquency rate per tier</div>
+          <div class="output-item"><div class="output-dot"></div>Revolving utilization index by segment</div>
+          <div class="output-item"><div class="output-dot"></div>Product-fit recommendations per credit band</div>
+        </div>
+      </div>
+
+      <div class="privacy-note"><span data-icon="lock"></span> No individual credit scores are accessed or returned at any point in this workflow.</div>
+      <div class="action-btns">
+        <button class="btn-primary">Get Started</button>
+        <button class="btn-secondary" onclick="openSpecs('offer')">Technical Specs</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ DETAIL: LAL MODELING ═══════════════════════════════ -->
+<div class="page" id="page-lal">
+  <div class="detail">
+    <div class="detail-inner">
+      <button class="back-btn" onclick="showHome()">← All use cases</button>
+
+      <div class="detail-header">
+        <div class="detail-icon-wrap"><span data-icon="loop"></span></div>
+        <div class="detail-label">Use Case 03</div>
+        <div class="detail-title">Look-Alike Modeling</div>
+        <div class="detail-desc">Use your pre-screen qualifying population as a high-quality seed audience. The clean room generates aggregate feature profiles of qualifying individuals. Your team builds LAL models to find creditworthy net-new prospects beyond the direct match pool.</div>
+        <div class="role-select-wrap">
+          <span class="role-select-label">Viewing as:</span>
+          <select class="role-select" onchange="updateRole(this.value)">
+            <option value="">Select your role...</option>
+            <option value="bank">Retail Bank</option>
+            <option value="provider">Data Provider / Bureau Agent</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="detail-section-title">The three parties</div>
+      <div class="parties-row">
+        <div class="party-mini bureau">
+          <div class="party-mini-icon"><span data-icon="files"></span></div>
+          <div class="party-mini-name">Credit Bureau</div>
+          <div class="party-mini-role">Credit attribute profiles</div>
+        </div>
+        <div class="party-mini bank">
+          <div class="party-mini-icon"><span data-icon="bank"></span></div>
+          <div class="party-mini-name">Retail Bank</div>
+          <div class="party-mini-role">Seed population & model team</div>
+        </div>
+        <div class="party-mini provider">
+          <div class="party-mini-icon"><span data-icon="signal"></span></div>
+          <div class="party-mini-name">Data Provider</div>
+          <div class="party-mini-role">Universe for scoring & activation</div>
+        </div>
+      </div>
+
+      <div class="detail-section-title">How it works</div>
+      <div class="flow-card">
+        <div class="flow-step">
+          <div class="flow-step-num bank">1</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Qualifying segment becomes the seed</div>
+            <div class="flow-step-body">Pre-screen qualifying population from Use Case 01 is passed as the seed input. No individual records — only the token set of qualifiers.</div>
+            <span class="flow-step-tag bank">Retail Bank</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num dcr">2</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Clean room generates aggregate feature profile</div>
+            <div class="flow-step-body">Behavioral and credit signals of the seed population — income index, revolving behavior, tenure — returned as a privacy-safe aggregate profile.</div>
+            <span class="flow-step-tag dcr">DCR Engine</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num bank">3</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bank builds LAL model against the profile</div>
+            <div class="flow-step-body">Data science team uses the aggregate feature profile to score the full provider universe. Net-new creditworthy prospects are identified.</div>
+            <span class="flow-step-tag bank">Bank Data Science</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num provider">4</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">LAL audience activated to digital channels</div>
+            <div class="flow-step-body">Match-keyed LAL audience pushed to programmatic DSPs, CTV, and paid social for upper-funnel reach with credit-quality guardrails.</div>
+            <span class="flow-step-tag provider">Data Provider</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="output-card">
+        <div class="output-card-label">What the bank receives</div>
+        <div class="output-card-title">Extended creditworthy reach beyond the direct match pool</div>
+        <div class="output-items">
+          <div class="output-item"><div class="output-dot"></div>Aggregate feature profile of qualifying seed</div>
+          <div class="output-item"><div class="output-dot"></div>LAL model scoring of provider universe</div>
+          <div class="output-item"><div class="output-dot"></div>Match-keyed audience for DSP / CTV activation</div>
+          <div class="output-item"><div class="output-dot"></div>Incremental reach metrics vs. direct match</div>
+        </div>
+      </div>
+
+      <div class="privacy-note"><span data-icon="lock"></span> LAL modeling uses only aggregate profiles. No individual credit attributes cross party boundaries.</div>
+      <div class="action-btns">
+        <button class="btn-primary">Get Started</button>
+        <button class="btn-secondary" onclick="openSpecs('lal')">Technical Specs</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ DETAIL: EDA ═══════════════════════════════ -->
+<div class="page" id="page-eda">
+  <div class="detail">
+    <div class="detail-inner">
+      <button class="back-btn" onclick="showHome()">← All use cases</button>
+
+      <div class="detail-header">
+        <div class="detail-icon-wrap"><span data-icon="micro"></span></div>
+        <div class="detail-label">Use Case 04</div>
+        <div class="detail-title">Exploratory Data Analysis</div>
+        <div class="detail-desc">Before committing a dollar of campaign spend, your data science team queries the clean room to understand the landscape. Universe sizing, population distributions, geographic overlays — all inside the compliance envelope.</div>
+        <div class="role-select-wrap">
+          <span class="role-select-label">Viewing as:</span>
+          <select class="role-select" onchange="updateRole(this.value)">
+            <option value="">Select your role...</option>
+            <option value="bank">Retail Bank</option>
+            <option value="provider">Data Provider / Bureau Agent</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="detail-section-title">The three parties</div>
+      <div class="parties-row">
+        <div class="party-mini bureau">
+          <div class="party-mini-icon"><span data-icon="files"></span></div>
+          <div class="party-mini-name">Credit Bureau</div>
+          <div class="party-mini-role">Full credit attribute dataset</div>
+        </div>
+        <div class="party-mini bank">
+          <div class="party-mini-icon"><span data-icon="bank"></span></div>
+          <div class="party-mini-name">Retail Bank</div>
+          <div class="party-mini-role">Research queries & strategy</div>
+        </div>
+        <div class="party-mini provider">
+          <div class="party-mini-icon"><span data-icon="signal"></span></div>
+          <div class="party-mini-name">Data Provider</div>
+          <div class="party-mini-role">Geographic & demographic enrichment</div>
+        </div>
+      </div>
+
+      <div class="detail-section-title">How it works</div>
+      <div class="flow-card">
+        <div class="flow-step">
+          <div class="flow-step-num bank">1</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bank submits research query</div>
+            <div class="flow-step-body">Data science team defines the question — e.g. "How many consumers in Market X qualify for our premium card at VantageScore ≥ 720?"</div>
+            <span class="flow-step-tag bank">Retail Bank</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num bureau">2</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bureau validates and contributes</div>
+            <div class="flow-step-body">Query governance checks permissible purpose. Bureau contributes the relevant encrypted attribute slice for computation.</div>
+            <span class="flow-step-tag bureau">Credit Bureau</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num dcr">3</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Clean room returns aggregate insights</div>
+            <div class="flow-step-body">Universe counts, score-band distributions, delinquency rate distributions, and geographic breakdowns — all privacy-filtered.</div>
+            <span class="flow-step-tag dcr">DCR Engine</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num bank">4</div>
+          <div class="flow-step-content">
+            <div class="flow-step-title">Bank iterates and informs strategy</div>
+            <div class="flow-step-body">Findings shape product roadmap, market entry decisions, pricing strategy — not just campaign execution. Queries can be refined and re-run.</div>
+            <span class="flow-step-tag bank">Bank Data Science</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="output-card">
+        <div class="output-card-label">What the bank receives</div>
+        <div class="output-card-title">Population intelligence to shape product and market strategy</div>
+        <div class="output-items">
+          <div class="output-item"><div class="output-dot"></div>Addressable universe size by score floor</div>
+          <div class="output-item"><div class="output-dot"></div>Delinquency distribution by geography</div>
+          <div class="output-item"><div class="output-dot"></div>Existing customer book vs. eligible population</div>
+          <div class="output-item"><div class="output-dot"></div>Whitespace analysis by credit tier and market</div>
+        </div>
+      </div>
+
+      <div class="privacy-note"><span data-icon="lock"></span> All EDA outputs are aggregate and privacy-threshold enforced. No campaign required to run analysis.</div>
+      <div class="action-btns">
+        <button class="btn-primary">Get Started</button>
+        <button class="btn-secondary" onclick="openSpecs('eda')">Technical Specs</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ TECH SPECS MODAL ═══════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+
+    <div class="modal-header">
+      <div class="modal-header-info">
+        <div class="modal-header-eyebrow" id="modal-eyebrow">Technical Specs</div>
+        <div class="modal-header-title" id="modal-title"></div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// ── SVG icon library ──────────────────────────────────────────
+const ICONS = {
+  target: `<svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="#9aa3af" stroke="none"/><line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/><line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/></svg>`,
+  card:   `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><line x1="6" y1="15" x2="10" y2="15"/></svg>`,
+  loop:   `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></svg>`,
+  micro:  `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M6 18L6 22"/><path d="M18 18L18 22"/><path d="M6 22L18 22"/><path d="M12 18v-3"/><path d="M5 9a7 7 0 0014 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="9" y1="2" x2="15" y2="2"/></svg>`,
+  files:  `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/><rect x="5" y="3" width="14" height="18" rx="1"/></svg>`,
+  bank:   `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M3 21h18M3 10h18M5 10V21M9 10V21M15 10V21M19 10V21M12 3L2 10h20L12 3z"/></svg>`,
+  signal: `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M5 12.5a9 9 0 0114 0"/><path d="M8.5 16a5 5 0 017 0"/><circle cx="12" cy="19" r="1" fill="#9aa3af" stroke="none"/><path d="M2 9a14 14 0 0120 0"/></svg>`,
+  lock:   `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/><circle cx="12" cy="16" r="1" fill="#9aa3af" stroke="none"/></svg>`,
+};
+
+document.querySelectorAll('[data-icon]').forEach(el => {
+  el.innerHTML = ICONS[el.dataset.icon] || '';
+});
+
+// ── Technical specs content per use case ─────────────────────
+const SPECS = {
+  prescreen: {
+    title: 'Pre-Screen Credit Targeting',
+    sections: [
+      {
+        title: 'Snowflake DCR Architecture',
+        rows: [
+          { key: 'DCR Version Required', val: 'Snowflake Data Clean Rooms v12.9 or later' },
+          { key: 'Collaboration Type', val: 'Multi-provider collaboration with three party roles: Owner (Bureau), Data Provider (Bureau Agent), Analysis Runner (Retail Bank)' },
+          { key: 'Account Requirements', val: 'Owner and data providers require Snowflake Enterprise Edition. Analysis runners may use Standard Edition.' },
+          { key: 'Cross-Cloud Support', val: 'Cross-Cloud Auto-Fulfillment supported — enables collaboration across AWS, Azure, and GCP regions without data movement.' },
+        ]
+      },
+      {
+        title: 'Collaboration Spec (YAML)',
+        code: `collaborators:
+  - account: bureau_snowflake_account
+    role: owner
+  - account: bureau_agent_account
+    role: data_provider
+  - account: retail_bank_account
+    role: analysis_runner
+data_offerings:
+  - name: credit_score_bands
+    provider: bureau_snowflake_account
+    policy: aggregate_only
+templates:
+  - name: prescreen_eligibility_query
+    assigned_to: retail_bank_account`
+      },
+      {
+        title: 'Privacy & Governance',
+        rows: [
+          { key: 'Table Policy', val: 'Aggregate-only policy enforced on bureau credit tables — no row-level results returned to any party.' },
+          { key: 'Differential Privacy', val: 'Enabled on all output queries. Noise calibrated to sensitivity of credit attribute distributions.' },
+          { key: 'Permissible Purpose Gate', val: 'Custom template includes FCRA §604(c) firm-offer validation logic before attribute unlock.' },
+          { key: 'Audit Log', val: 'All query executions logged to immutable Snowflake event table, accessible to all collaborators.' },
+        ]
+      },
+      {
+        title: 'Activation',
+        rows: [
+          { key: 'Result Delivery', val: 'Analysis runner receives aggregate segment counts and match-keyed audience tokens via Snowflake Activation connector.' },
+          { key: 'Supported Channels', val: 'Direct mail fulfillment, programmatic DSP (via identity connector), CTV.' },
+          { key: 'Identity Connectors', val: 'Acxiom, LiveRamp, Merkle — available via Snowflake Marketplace identity provider connectors.' },
+        ]
+      },
+      { note: 'Built on Snowflake Collaboration Data Clean Rooms. See full docs at docs.snowflake.com/en/user-guide/cleanrooms/v2/using' }
+    ]
+  },
+  offer: {
+    title: 'Tailored Offer Structuring',
+    sections: [
+      {
+        title: 'Snowflake DCR Architecture',
+        rows: [
+          { key: 'DCR Version Required', val: 'Snowflake Data Clean Rooms v12.9 or later' },
+          { key: 'Collaboration Type', val: 'Provider-run analysis — bureau contributes credit distributions, bank receives aggregate risk profiles per segment.' },
+          { key: 'Template Type', val: 'Custom SQL template with parameterized score band thresholds. Bank passes product parameters; bureau executes and returns aggregate outputs.' },
+          { key: 'Multistep Flow', val: 'Optional multistep flow: Step 1 computes score distributions; Step 2 applies product eligibility logic; Step 3 returns calibrated offer parameters.' },
+        ]
+      },
+      {
+        title: 'Collaboration Spec (YAML)',
+        code: `collaborators:
+  - account: bureau_snowflake_account
+    role: owner
+  - account: retail_bank_account
+    role: analysis_runner
+data_offerings:
+  - name: credit_risk_distributions
+    provider: bureau_snowflake_account
+    policy: aggregate_only
+    column_policies:
+      - column: score_band
+        policy: bucket  # returns ranges, not raw values
+      - column: delinquency_flag
+        policy: aggregate_count
+templates:
+  - name: offer_calibration_template
+    type: multistep
+    steps: [score_distribution, product_fit, offer_params]`
+      },
+      {
+        title: 'Privacy & Governance',
+        rows: [
+          { key: 'Column Policies', val: 'Score band bucketed into ranges (e.g. 620–659, 660–699). Delinquency returned as aggregate count only. No raw values exposed.' },
+          { key: 'Differential Privacy', val: 'Applied at output layer. Bureau configures epsilon value; bank cannot override.' },
+          { key: 'Audit', val: 'Each offer calibration run logged with timestamp, template version, and output hash.' },
+        ]
+      },
+      {
+        title: 'Output Schema',
+        rows: [
+          { key: 'score_band', val: 'VARCHAR — bucketed range (e.g. "660-699")' },
+          { key: 'population_size', val: 'INTEGER — aggregate count, noise-adjusted' },
+          { key: 'est_approval_rate', val: 'FLOAT — modeled approval probability for segment' },
+          { key: 'avg_utilization_tier', val: 'VARCHAR — low / medium / high bucket' },
+        ]
+      },
+      { note: 'Built on Snowflake Collaboration Data Clean Rooms. See full docs at docs.snowflake.com/en/user-guide/cleanrooms/v2/using' }
+    ]
+  },
+  lal: {
+    title: 'Look-Alike Modeling',
+    sections: [
+      {
+        title: 'Snowflake DCR Architecture',
+        rows: [
+          { key: 'DCR Version Required', val: 'Snowflake Data Clean Rooms v12.9 or later' },
+          { key: 'Template Type', val: 'Lookalike audience modeling template — built-in Snowflake DCR use case template, extended with credit attribute seed profiling.' },
+          { key: 'ML Runtime', val: 'Snowpark ML inside the clean room — model training runs on bureau\'s compute, preventing feature exposure to the bank.' },
+          { key: 'Seed Input', val: 'Bank provides encrypted token set of pre-screen qualifying population as the model seed. No CRM attributes transmitted.' },
+        ]
+      },
+      {
+        title: 'Collaboration Spec (YAML)',
+        code: `collaborators:
+  - account: bureau_snowflake_account
+    role: owner
+  - account: bureau_agent_account
+    role: data_provider
+  - account: retail_bank_account
+    role: analysis_runner
+templates:
+  - name: lookalike_modeling_template
+    type: snowpark_ml
+    seed_input: bank_qualifying_tokens
+    feature_source: credit_risk_distributions
+    output: aggregate_lal_profile
+    activation:
+      target: bureau_agent_account
+      channel: dsp_connector`
+      },
+      {
+        title: 'Privacy & Governance',
+        rows: [
+          { key: 'Feature Exposure', val: 'Model features remain inside the DCR. Bank receives only the aggregate lookalike profile and activation-ready token set.' },
+          { key: 'Differential Privacy', val: 'Applied to all aggregate feature profile outputs before delivery to analysis runner.' },
+          { key: 'Model Versioning', val: 'Each LAL model run versioned and logged. Bureau retains model artifacts; bank receives only scored output.' },
+        ]
+      },
+      {
+        title: 'Activation',
+        rows: [
+          { key: 'Activation Target', val: 'LAL audience tokens delivered to bureau agent (Acxiom / Merkle / Epsilon) for DSP sync.' },
+          { key: 'Supported Connectors', val: 'Trade Desk, DV360, Xandr — via Snowflake Activation connectors in the Marketplace.' },
+          { key: 'Incremental Reach', val: 'Overlap report (aggregate) generated comparing LAL pool to direct match set — no individual-level data.' },
+        ]
+      },
+      { note: 'Built on Snowflake Collaboration Data Clean Rooms. See full docs at docs.snowflake.com/en/user-guide/cleanrooms/v2/using' }
+    ]
+  },
+  eda: {
+    title: 'Exploratory Data Analysis',
+    sections: [
+      {
+        title: 'Snowflake DCR Architecture',
+        rows: [
+          { key: 'DCR Version Required', val: 'Snowflake Data Clean Rooms v12.9 or later' },
+          { key: 'Template Type', val: 'Consumer-run analysis — bank authors SQL queries within approved template parameters. Bureau enforces output policies.' },
+          { key: 'Custom SQL Queries', val: 'Bank may use Custom SQL Query feature (within approved schema) to run ad-hoc research questions against bureau data.' },
+          { key: 'Scheduled Analysis', val: 'Recurring EDA queries can be scheduled via Snowflake DCR schedule analysis feature — results delivered on cadence.' },
+        ]
+      },
+      {
+        title: 'Collaboration Spec (YAML)',
+        code: `collaborators:
+  - account: bureau_snowflake_account
+    role: owner
+  - account: retail_bank_account
+    role: analysis_runner
+data_offerings:
+  - name: credit_population_stats
+    provider: bureau_snowflake_account
+    policy: aggregate_only
+    allowed_dimensions: [geography, score_band, product_type]
+    prohibited_columns: [individual_id, ssn_hash, dob]
+templates:
+  - name: eda_population_query
+    type: custom_sql
+    max_output_rows: 500  # aggregate groups only
+    schedule: optional`
+      },
+      {
+        title: 'Privacy & Governance',
+        rows: [
+          { key: 'Allowed Dimensions', val: 'Geography, score band, product type. Individual-level dimensions prohibited by table policy.' },
+          { key: 'Prohibited Columns', val: 'individual_id, ssn_hash, dob — enforced at table policy layer, not query layer.' },
+          { key: 'Max Output Rows', val: 'Configurable aggregate group limit. Groups below minimum count suppressed before output.' },
+          { key: 'Query Governance', val: 'Bureau\'s Security Scan feature validates all custom SQL templates before execution to prevent re-identification attacks.' },
+        ]
+      },
+      {
+        title: 'Output Schema (example)',
+        rows: [
+          { key: 'geography', val: 'VARCHAR — state or DMA code' },
+          { key: 'score_band', val: 'VARCHAR — bucketed range' },
+          { key: 'population_count', val: 'INTEGER — noise-adjusted aggregate' },
+          { key: 'delinquency_rate', val: 'FLOAT — aggregate rate, not individual flag' },
+          { key: 'avg_utilization_index', val: 'FLOAT — indexed 0–100' },
+        ]
+      },
+      { note: 'Built on Snowflake Collaboration Data Clean Rooms. See full docs at docs.snowflake.com/en/user-guide/cleanrooms/v2/using' }
+    ]
+  }
+};
+
+// ── Render modal ──────────────────────────────────────────────
+function openSpecs(ucId) {
+  const spec = SPECS[ucId];
+  if (!spec) return;
+
+  document.getElementById('modal-title').textContent = spec.title;
+  document.getElementById('modal-eyebrow').textContent = 'Technical Specs — Powered by Snowflake DCR';
+
+  let html = '';
+  spec.sections.forEach(sec => {
+    if (sec.note) {
+      html += `<div class="spec-snowflake-note">
+        <div class="spec-snowflake-note-icon">❄️</div>
+        <div class="spec-snowflake-note-text">${sec.note}</div>
+      </div>`;
+      return;
+    }
+    html += `<div class="spec-section"><div class="spec-section-title">${sec.title}</div>`;
+    if (sec.rows) {
+      sec.rows.forEach(r => {
+        html += `<div class="spec-row"><div class="spec-key">${r.key}</div><div class="spec-val">${r.val}</div></div>`;
+      });
+    }
+    if (sec.code) {
+      html += `<div class="spec-code">${sec.code}</div>`;
+    }
+    html += `</div>`;
+  });
+
+  document.getElementById('modal-body').innerHTML = html;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── Page navigation ───────────────────────────────────────────
+function showHome() {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-home').classList.add('active');
+  document.querySelectorAll('.role-select').forEach(s => s.value = '');
+  window.scrollTo(0, 0);
+}
+
+function showDetail(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function updateRole(role) {
+  if (!role) {
+    document.querySelectorAll('.flow-step').forEach(step => { step.style.opacity = '1'; });
+    return;
+  }
+  document.querySelectorAll('.flow-step').forEach(step => {
+    const tag = step.querySelector('.flow-step-tag');
+    if (!tag) return;
+    const isMatch = tag.classList.contains(role);
+    step.style.opacity = isMatch ? '1' : '0.35';
+    step.style.transition = 'opacity 0.2s';
+  });
+}
+
+// Keyboard close
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModalDirect();
+});
+</script>
+</body>
+</html>
