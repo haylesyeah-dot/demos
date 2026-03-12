@@ -1,0 +1,7 @@
+name: numad_identity_cloud
+channels:
+  - snowflake
+dependencies:
+  - streamlit
+  - pandas
+  - plotly
